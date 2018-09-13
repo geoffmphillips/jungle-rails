@@ -8,9 +8,9 @@ class UsersController < ApplicationController
 
     if @user.save
       session[:user_id] = @user.id
-      redirect_to '/', notice: 'Registered!'
+      redirect_to root_path, notice: 'Registered!'
     else
-      render :new, notice: 'Registration failed, please try again'
+      redirect_to register_path, notice: 'Registration failed, please try again'
     end
   end
 
@@ -20,10 +20,9 @@ class UsersController < ApplicationController
     params.require(:user).permit(
       :first_name,
       :last_name,
+      :email,
       :password,
       :password_confirmation,
     )
   end
-
-
 end
