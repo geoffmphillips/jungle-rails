@@ -4,6 +4,10 @@
     <h1>My Cart</h1>
   </header>
 
+  <% if cart.size == 0 %>
+    <p>Looks like you don't have anything in your cart! Add some stuffs</p>
+    <%= link_to "Home", root_path %>
+  <% else %>
   <div class="panel panel-default items">
     <table class="table table-bordered">
       <thead>
@@ -32,6 +36,7 @@
     </table>
   </div>
 
+
   <div class="row">
     <div class="col-xs-12">
       <%= form_tag orders_path do %>
@@ -40,13 +45,14 @@
           data-key="<%= Rails.configuration.stripe[:publishable_key] %>"
           data-amount="<%= cart_subtotal_cents %>"
           data-name="Jungle"
-          data-description="Khurram Virani's Jungle Order"
+          data-description="Jungle Order"
           data-locale="auto"
-          data-email="kvirani@gmail.com"
+          data-email="geoffreymartinphillips@gmail.com"
           data-currency="cad">
         </script>
       <% end %>
     </div>
   </div>
+  <% end %>
 
 </section>
