@@ -1,13 +1,15 @@
 class ReviewsController < ApplicationController
 
   def create
-    @product = Product.where(id: params[:product_id])
-    @review = @product.Review.new(review_params)
-
+    @review = Review.new(review_params)
+    @review.user = current_user
+    @review.product_id = params[:product_id]
+    
     if @review.save
-      redirect_to [:admin, :products], notice: 'Product created!'
+      @review.save
+      redirect_to "/products/#{params[:product_id]}"
     else
-      render product_path
+      redirect_to "/products/#{params[:product_id]}"
     end
   end
 
@@ -17,7 +19,7 @@ class ReviewsController < ApplicationController
     params.require(:review).permit(
       :description,
       :rating,
-      :user_id,
+      :product_id,
     )
   end
 
