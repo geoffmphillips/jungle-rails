@@ -1,17 +1,22 @@
 class OrdersController < ApplicationController
 
   before_filter :authorize
+  helper_method :get_product
 
   def show
     @order = Order.find(params[:id])
+    @line_items = LineItem.where(order_id: @order.id)
   end
 
   def create
     charge = perform_stripe_charge
     order  = create_order(charge)
+    # @order = Order.find(params[:id])
+    # @line_items = LineItem.where(order_id: @order.id)
 
     if order.valid?
       empty_cart!
+      OrderMailer.with(order: @order, line_items: @line_items).purchase_email
       redirect_to order, notice: 'Your Order has been placed.'
     else
       redirect_to cart_path, flash: { error: order.errors.full_messages.first }
@@ -19,6 +24,10 @@ class OrdersController < ApplicationController
 
   rescue Stripe::CardError => e
     redirect_to cart_path, flash: { error: e.message }
+  end
+
+  def get_product product_id
+    @product = Product.find(product_id)
   end
 
   private
@@ -32,7 +41,7 @@ class OrdersController < ApplicationController
     Stripe::Charge.create(
       source:      params[:stripeToken],
       amount:      cart_subtotal_cents,
-      description: "Khurram Virani's Jungle Order",
+      description: "Khurram's Jungle Order",
       currency:    'cad'
     )
   end
