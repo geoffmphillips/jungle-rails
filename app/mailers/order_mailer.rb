@@ -3,16 +3,17 @@ class OrderMailer < ApplicationMailer
 
   layout "mailer"
 
-  def purchase_email params
-    puts params
-    @email = params[:email]
-    @order = params[:order]
-    @line_items = params[:line_items]
+  def purchase_email order
+    @order = order
+    @line_items = LineItem.where(order_id: order.id)
+    @order_total = @order.total_cents / 100.0
 
-    mail(to: "geoffreymartinphillips@gmail.com", subject: 'Order confirmation for order#')
+    mail(to: @order.email, subject: "Order confirmation for order# #{@order.id}")
   end
 
-  def get_product
-    @product = Product.find(product_id)
+  def get_product id
+    Product.find(id)
   end
+
+  helper_method :get_product
 end

@@ -6,7 +6,11 @@
   <body>
     <h1>Thanks for your order!</h1>
     <p>
-      Here's everything your purchased:<br>
+      Here's everything your purchased:<br>\
+      <% @line_items.each do |item| %>
+        <% current_product = get_product item.product_id %>
+        <p><%= current_product.name %></p>
+      <% end %>
 
     </p>
     <p>Have a great day!</p>
