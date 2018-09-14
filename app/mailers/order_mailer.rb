@@ -1,15 +1,19 @@
 class OrderMailer < ApplicationMailer
-  default from: 'orders@jungle.com'
+  default from: 'orders@jungle.com', to: 'geoffreymartinphillips@gmail.com'
 
-  def purchase_email
-    @email = params[:email]
-    @order = params[:order]
-    @line_items = params[:line_items]
+  layout "mailer"
 
-    mail(to: @email, subject: 'Order confirmation for order# ' + @order.id)
+  def purchase_email order
+    @order = order
+    @line_items = LineItem.where(order_id: order.id)
+    @order_total = @order.total_cents / 100.0
+
+    mail(to: @order.email, subject: "Order confirmation for order# #{@order.id}")
   end
 
-  def get_product
-    @product = Product.find(product_id)
+  def get_product id
+    Product.find(id)
   end
+
+  helper_method :get_product
 end

@@ -17,9 +17,6 @@ Rails.application.routes.draw do
   get '/register' => 'users#new'
   post '/users' => 'users#create'
 
-  # resources :users, only: [:new, :create]
-  # resources :session, only: [:new, :create, :destroy]
-
   resources :orders, only: [:create, :show]
 
   namespace :admin do
