@@ -2,27 +2,34 @@
 
 A mini e-commerce application built with Rails 4.2 for purposes of teaching Rails by example.
 
+## Final Product
 
-## Setup
+![Landing page with all products]()
 
-1. Fork & Clone
-2. Run `bundle install` to install dependencies
-3. Create `config/database.yml` by copying `config/database.example.yml`
-4. Create `config/secrets.yml` by copying `config/secrets.example.yml`
-5. Run `bin/rake db:reset` to create, load and seed db
-6. Create .env file based on .env.example
-7. Sign up for a Stripe account
-8. Put Stripe (test) keys into appropriate .env vars
-9. Run `bin/rails s -b 0.0.0.0` to start the server
+View all products on the landing page. Each product has reviews and ratings. Admins can log in to create new products and categories.
+
+![Checkout with Stripe]()
+
+Checkout with Stripe!
+
+![Users can create reviews and delete their own reviews]()
+
+Logged in users can create reviews. They delete reviews they've created.
+
+## Getting Started
+
+1. Clone this repo
+1. Run `bundle install` to install dependencies
+1. Run `bin/rake db:reset` to create, load and seed db
 
 ## Stripe Testing
 
-Use Credit Card # 4111 1111 1111 1111 for testing success scenarios.
+Use Credit Card # 4242 4242 4242 4242 for testing success scenarios.
 
 More information in their docs: <https://stripe.com/docs/testing#cards>
 
 ## Dependencies
 
-* Rails 4.2 [Rails Guide](http://guides.rubyonrails.org/v4.2/)
+* Rails 4.2
 * PostgreSQL 9.x
 * Stripe
