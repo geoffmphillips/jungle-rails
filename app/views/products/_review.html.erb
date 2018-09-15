@@ -7,9 +7,7 @@
   </td>
   <td>
     <% if user.id == review.user_id %>
-      <%= button_to "", { action: "delete", id: review.id }, { form_class: 'form', class: "btn btn-danger", method: :delete } do %>
-        <i class="far fa-trash-alt"></i>
-      <% end %>
+      <%= button_to "Delete", product_review_path(review.product_id, review.id), method: :delete, class: "btn btn-danger"%>
     <% end %>
   </td>
 </tr>
