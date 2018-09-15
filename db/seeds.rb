@@ -132,5 +132,35 @@ cat3.products.create!({
   price: 2_483.75
 })
 
+# USERS
+
+User.create!({
+   first_name: 'geoff',
+   last_name: 'yo',
+   email: 'geoff@geoff.geoff',
+   password_digest: BCrypt::Password.create("12345"),
+})
+
+# REVIEWS
+
+prod1 = Product.first
+
+prod1.reviews.create!({
+  user_id: 1,
+  rating: 5,
+  description: "heyheyhhe this is a real review",
+})
+
+prod1.reviews.create!({
+  user_id: 1,
+  rating: 5,
+  description: "REAL GOOD FOR TRUE YES",
+})
+
+prod1.reviews.create!({
+  user_id: 1,
+  rating: 2,
+  description: "bah balha balhalahalhbah balha balhalahalhbah balha balhalahalhbah balha balhalahalhbah balha balhalahalhbah balha balhalahalhbah balha balhalahalhbah balha balhalahalhbah balha balhalahalhbah balha balhalahalh",
+})
 
 puts "DONE!"
