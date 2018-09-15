@@ -6,8 +6,10 @@
     <p><%= review.rating %> / 5</p>
   </td>
   <td>
-    <%= button_to "", { action: "delete", id: review.id }, { form_class: 'form', class: "btn btn-danger", method: :delete } do %>
-      <i class="far fa-trash-alt"></i>
+    <% if user.id == review.user_id %>
+      <%= button_to "", { action: "delete", id: review.id }, { form_class: 'form', class: "btn btn-danger", method: :delete } do %>
+        <i class="far fa-trash-alt"></i>
+      <% end %>
     <% end %>
   </td>
 </tr>

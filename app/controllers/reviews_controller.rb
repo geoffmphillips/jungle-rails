@@ -4,13 +4,19 @@ class ReviewsController < ApplicationController
     @review = Review.new(review_params)
     @review.user = current_user
     @review.product_id = params[:product_id]
-    
+
     if @review.save
       @review.save
-      redirect_to "/products/#{params[:product_id]}"
+      redirect_to  product_path params[:product_id]
     else
-      redirect_to "/products/#{params[:product_id]}"
+      redirect_to  product_path params[:product_id]
     end
+  end
+
+  def destroy
+    @review = Review.find params[:id]
+    @review.destroy
+    redirect_to product_path params[:product_id]
   end
 
   private
