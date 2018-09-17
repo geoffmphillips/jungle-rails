@@ -12,4 +12,9 @@ class User < ActiveRecord::Base
   validates_length_of :password, minimum: 5
   validates :password_confirmation, presence: true
 
+  def self.authenticate_with_credentials params
+    @user = User.find_by email: params[:email]
+    @user.authenticate params[:password]
+  end
+
 end

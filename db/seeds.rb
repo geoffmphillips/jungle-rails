@@ -134,14 +134,19 @@ cat3.products.create!({
 
 # USERS
 
+puts "Creating user..."
+
 User.create!({
    first_name: 'geoff',
    last_name: 'yo',
    email: 'geoff@geoff.geoff',
-   password_digest: BCrypt::Password.create("12345"),
+   password: "12345",
+   password_confirmation: "12345",
 })
 
 # REVIEWS
+
+puts "Creating reviews..."
 
 prod1 = Product.first
 
