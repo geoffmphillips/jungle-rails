@@ -6,7 +6,7 @@
     <p><%= review.rating %> / 5</p>
   </td>
   <td>
-    <% if user.id == review.user_id %>
+    <% if user && user.id == review.user_id %>
       <%= button_to "Delete", product_review_path(review.product_id, review.id), method: :delete, class: "btn btn-danger"%>
     <% end %>
   </td>

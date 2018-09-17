@@ -56,7 +56,7 @@
     </thead>
     <tbody>
       <% @reviews.each do |review| %>
-        <%= render 'review', review: review, user: @current_user %>
+        <%= render 'review', review: review, user: current_user %>
       <% end %>
     </tbody>
   </table>
