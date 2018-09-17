@@ -3,9 +3,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    puts session_params
-    user = User.find_by_email(session_params[:email])
-    if user && user.authenticate(session_params[:password])
+    if user = User.authenticate_with_credentials(params[:email], params[:password])
       session[:user_id] = user.id
       redirect_to root_path
     else
@@ -16,6 +14,11 @@ class SessionsController < ApplicationController
   def destroy
     session[:user_id] = nil
     redirect_to login_path
+  end
+
+  def self.authenticate_with_credentials email, password
+    user = User.find_by_email(email)
+    user.authenticate(password)
   end
 
   private
