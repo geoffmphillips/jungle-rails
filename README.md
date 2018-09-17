@@ -4,15 +4,15 @@ A mini e-commerce application built with Rails 4.2 for purposes of teaching Rail
 
 ## Final Product
 
-![Landing page with all products]()
+![Landing page with all products](https://github.com/geoffmphillips/jungle-rails/blob/master/img/products.png)
 
 View all products on the landing page. Each product has reviews and ratings. Admins can log in to create new products and categories.
 
-![Checkout with Stripe]()
+![Checkout with Stripe](https://github.com/geoffmphillips/jungle-rails/blob/master/img/checkout.png)
 
 Checkout with Stripe!
 
-![Users can create reviews and delete their own reviews]()
+![Users can create reviews and delete their own reviews](https://github.com/geoffmphillips/jungle-rails/blob/master/img/reviews.png)
 
 Logged in users can create reviews. They delete reviews they've created.
 
