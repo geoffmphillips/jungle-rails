@@ -18,7 +18,9 @@ RSpec.feature "Visitor navigates to product page", type: :feature, js: true do
 
 
   scenario "They see product image" do
-    visit product_path(1)
+    visit root_path
+    # visit product_path(1)
+    first(:link, 'Details').click
 
     # save_screenshot
 
